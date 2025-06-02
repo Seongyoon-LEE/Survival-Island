@@ -19,8 +19,16 @@ public class SkeletonDamage : MonoBehaviour
     private int hp;
     private int maxHp = 100;
     public bool isDie = false;
+  
+
+    [Header("HpUI")]
+    public Image hpBar;
+    public Text hpText;
+    public Canvas canvas;
     void Start()
     {
+        hpBar.color = Color.green;
+        canvas = GetComponentInChildren<Canvas>();
         hp = maxHp;
         rb = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
@@ -45,8 +53,14 @@ public class SkeletonDamage : MonoBehaviour
             anim.SetTrigger(hashHit);
             Destroy(col.gameObject);
             hp -= 25;
-
             hp = Mathf.Clamp(hp, 0, maxHp);
+            hpBar.fillAmount = (float)hp / maxHp;
+            if (hpBar.fillAmount <= 0.3f) 
+                hpBar.color = Color.red;
+            else if(hpBar.fillAmount <= 0.5f)
+                hpBar.color = Color.yellow;
+            hpText.text = $"HP : <color=#f00> {hp}</color>";
+            
         }
        if(hp <= 0)
         {
@@ -79,6 +93,7 @@ public class SkeletonDamage : MonoBehaviour
         Destroy(gameObject, 5f);
         GetComponent<Rigidbody>().isKinematic = false;
         GetComponent<CapsuleCollider>().enabled = false;
+        canvas.enabled = false;
     }
     IEnumerator EnemyJump()
     {
@@ -86,4 +101,5 @@ public class SkeletonDamage : MonoBehaviour
         isJumping = false;
         agent.speed = 3.5f;
     }
+ 
 }
