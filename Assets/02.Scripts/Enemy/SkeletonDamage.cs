@@ -94,6 +94,7 @@ public class SkeletonDamage : MonoBehaviour
         GetComponent<Rigidbody>().isKinematic = false;
         GetComponent<CapsuleCollider>().enabled = false;
         canvas.enabled = false;
+        GameManager.instance.UpdateKillCount(1); // 게임 매니저의 총 킬 카운트 증가
     }
     IEnumerator EnemyJump()
     {

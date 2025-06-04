@@ -79,6 +79,7 @@ public class ZombieDamage : MonoBehaviour
         GetComponent<CapsuleCollider>().enabled = false;
         GetComponent<Rigidbody>().isKinematic = true;
         canvas.enabled = false; // 캔버스 UI비활성화
+        GameManager.instance.UpdateKillCount(1); // 게임 매니저의 총 킬 카운트 증가
     }
 
     private void OnCollisionExit(Collision col) // 콜백 함수 스스로 호출된다

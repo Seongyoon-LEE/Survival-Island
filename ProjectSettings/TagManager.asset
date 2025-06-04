@@ -8,6 +8,8 @@ TagManager:
   - JUMPSUPORT
   - PUNCH
   - WEAPONCOL
+  - ZOMBIE
+  - SKELETON
   layers:
   - Default
   - TransparentFX
