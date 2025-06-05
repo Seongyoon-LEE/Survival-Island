@@ -12,11 +12,12 @@ public class PlayerHandAnimation : MonoBehaviour
     private readonly string runStopAni = "runStop";
     private readonly string fireInput = "Fire1";
     private readonly string fireAni = "fire";
-
     private bool isRunning;
+    FireBullet fireBullet; // 총알 발사 스크립트 참조
 
     void Start()
     {
+        fireBullet = GetComponent<FireBullet>();
         //anim = GetComponentInChildren<Animation>(); 자식들의 애니메이션이 많아지면 찾기 힘듬 
         //anim = GetComponentsInChildren<Animation>()[0]; 자식들중 배열에 맞는 자식의 애니메이션을 가지고온다.
 
@@ -31,6 +32,7 @@ public class PlayerHandAnimation : MonoBehaviour
     }
     public void PlayerFire()
     {
+        if (fireBullet.isReloading) return;
         if (Input.GetButton(fireInput) && !isRunning)
         {
             anim.Play(fireAni);
