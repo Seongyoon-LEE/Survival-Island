@@ -10,6 +10,7 @@ TagManager:
   - WEAPONCOL
   - ZOMBIE
   - SKELETON
+  - SWORD
   layers:
   - Default
   - TransparentFX

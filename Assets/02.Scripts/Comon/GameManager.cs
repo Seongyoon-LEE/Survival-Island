@@ -21,9 +21,11 @@ public class GameManager : MonoBehaviour
     private int maxSkeletonCount = 5; // 최대 스켈레톤 수
     public int totalkill = 0; // 총 킬 카운트
 
+    private readonly string zombieTag = "ZOMBIE";
+    private readonly string skeletonTag = "SKELETON";
     void Start()
     {
-        killText = GameObject.Find("Panel_Kill").transform.GetChild(0).GetComponent<Text>(); // UI에서 킬수 텍스트를 찾음
+        killText = GameObject.Find("Panel-Kill").transform.GetChild(0).GetComponent<Text>(); // UI에서 킬수 텍스트를 찾음
         instance = this; // 싱글톤 인스턴스 초기화
         timePrev = Time.time; // 좀비 생성 시간 초기화
         timePrev2 = Time.time; // 스켈레톤 생성 시간 초기화
@@ -39,14 +41,14 @@ public class GameManager : MonoBehaviour
         if(Time.time - timePrev >= 3f) // 3초마다 좀비 생성
         {
             timePrev = Time.time; // 현재 시간을 이전 시간으로 설정
-            int zombieCount = GameObject.FindGameObjectsWithTag("ZOMBIE").Length; // 현재 좀비 수를 계산, FindGameObjectsWithTag를 사용하여 "Zombie" 태그를 가진 모든 오브젝트를 찾음
+            int zombieCount = GameObject.FindGameObjectsWithTag(zombieTag).Length; // 현재 좀비 수를 계산, FindGameObjectsWithTag를 사용하여 "Zombie" 태그를 가진 모든 오브젝트를 찾음
             if (zombieCount < maxZombieCount) // 최대 좀비 수를 초과하면 생성하지 않음
                 CreateZombie();
         }
         if(Time.time - timePrev2 >= 5f) // 5초마다 스켈레톤 생성
         {
             timePrev2 = Time.time; // 현재 시간을 이전 시간으로 설정
-            int skeletonCount = GameObject.FindGameObjectsWithTag("SKELETON").Length; // 현재 스켈레톤 수를 계산
+            int skeletonCount = GameObject.FindGameObjectsWithTag(skeletonTag).Length; // 현재 스켈레톤 수를 계산
             if(skeletonCount < maxSkeletonCount) // 최대 스켈레톤 수를 초과하면 생성하지 않음
                 CreateSkeleton();
         }

@@ -7,6 +7,8 @@ public class BulletCtrl : MonoBehaviour
 {
     public float speed = 1500f;
     private Rigidbody rb;
+    public int zbDamage = 20;
+    public int skDamage = 15;
 
     void Start()
     {

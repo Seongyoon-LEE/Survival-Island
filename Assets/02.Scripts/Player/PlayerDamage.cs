@@ -32,6 +32,7 @@ public class PlayerDamage : MonoBehaviour
                 PlayerDie(); 
             }
         }
+        //else if(other.gameObject.CompareTag(punchTag))
     }
 
     void Start()

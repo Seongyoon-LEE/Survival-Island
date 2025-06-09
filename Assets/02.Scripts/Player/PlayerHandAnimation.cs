@@ -12,7 +12,7 @@ public class PlayerHandAnimation : MonoBehaviour
     private readonly string runStopAni = "runStop";
     private readonly string fireInput = "Fire1";
     private readonly string fireAni = "fire";
-    private bool isRunning;
+    public bool isRunning = false;
     FireBullet fireBullet; // 총알 발사 스크립트 참조
 
     void Start()
@@ -23,7 +23,6 @@ public class PlayerHandAnimation : MonoBehaviour
 
         //자기 자신의 첫번째 자식 오브젝트를 찾고 그 자식의 첫번째 오브젝트의 자식 오브젝트를 찾는다
         anim = transform.GetChild(0).GetChild(0).GetComponent<Animation>();
-        isRunning = false;
     }
     void Update()
     {
@@ -33,7 +32,7 @@ public class PlayerHandAnimation : MonoBehaviour
     public void PlayerFire()
     {
         if (fireBullet.isReloading) return;
-        if (Input.GetButton(fireInput) && !isRunning)
+        if (Input.GetButtonDown(fireInput) && !isRunning)
         {
             anim.Play(fireAni);
         }
