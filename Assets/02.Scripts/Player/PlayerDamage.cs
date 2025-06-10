@@ -14,7 +14,7 @@ public class PlayerDamage : MonoBehaviour
     public Image hpBar;
     public Text hpText;
     public GameObject bliendObj;
-
+    public bool isPlayerDie = false;
     private string punchTag = "PUNCH";
 
     private void OnTriggerEnter(Collider other)
@@ -67,8 +67,9 @@ public class PlayerDamage : MonoBehaviour
             script.enabled = false; // 플레이어 스크립트 비활성화
         }
         Invoke("SceneMove", 3f);
-        
-        
+        isPlayerDie = true;
+
+
     }
     void SceneMove()
     {
