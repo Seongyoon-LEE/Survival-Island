@@ -23,11 +23,28 @@ public class GameManager : MonoBehaviour
 
     private readonly string zombieTag = "ZOMBIE";
     private readonly string skeletonTag = "SKELETON";
+
+    private void Awake() // Start() 전에 호출되는 함수로, 싱글톤 패턴을 구현합니다.
+    {
+        if(instance == null) // 싱글톤 인스턴스가 없으면 
+        {
+            instance = this; // 현재 인스턴스를 설정
+            DontDestroyOnLoad(gameObject); // 씬 전환 시에도 파괴되지 않도록 설정
+        }
+        else
+        {
+            Destroy(gameObject); // 이미 인스턴스가 존재하면 현재 오브젝트를 파괴
+        }
+    }
     void Start()
     {
+        MouseCursorVisible();
+        if(instance != null)
         killText = GameObject.Find("Panel-Kill").transform.GetChild(0).GetComponent<Text>(); // UI에서 킬수 텍스트를 찾음
-        instance = this; // 싱글톤 인스턴스 초기화
-        timePrev = Time.time; // 좀비 생성 시간 초기화
+        else
+            killText = null;
+
+            timePrev = Time.time; // 좀비 생성 시간 초기화
         timePrev2 = Time.time; // 스켈레톤 생성 시간 초기화
         Transform[] spawnPoints = GameObject.Find("SpawnPoints").GetComponentsInChildren<Transform>(); // 하이라키에서 SpawnPoints 오브젝트를 찾고 찾은 자식 트랜스폼을 가져옴
         if(spawnPoints != null)
@@ -68,6 +85,17 @@ public class GameManager : MonoBehaviour
     {
         totalkill += killCount; // 총 킬 카운트 업데이트   
         killText.text = $"Kill : <color=f00>{totalkill.ToString()}</color>"; // 킬수 UI 업데이트
+    }
+    public void MouseCursorDisable()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    public void MouseCursorVisible()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
 }
