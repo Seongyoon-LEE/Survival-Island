@@ -69,7 +69,7 @@ public class FireBullet : MonoBehaviour
         if (isReloading || playerHandAnimation.isRunning) return;
         Instantiate(BulletPrefab, FirePos.position, FirePos.rotation);
        
-        source.PlayOneShot(fireSound,50);
+        source.PlayOneShot(fireSound,5);
         cartridgeEject.Play(); // ÃÑ¾Ë ¶³±¸´Â ÀÌÆåÆ® Àç»ý
         muzzleFlash.Play(); // ÃÑ±¸ ÇÃ·¡½Ã ÀÌÆåÆ® Àç»ý
 
