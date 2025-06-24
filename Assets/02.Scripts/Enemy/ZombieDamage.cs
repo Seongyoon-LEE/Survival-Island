@@ -14,7 +14,9 @@ public class ZombieDamage : MonoBehaviour
     private readonly int hashJump = Animator.StringToHash("IsJump_T");
     private readonly int hashHit = Animator.StringToHash("IsHit_T");
     private readonly int hashDie = Animator.StringToHash("IsDie_T");
+    private readonly int hashPlayerDie = Animator.StringToHash("PlayerDie");
     private readonly string bulletTag = "BULLET";
+    private readonly string zombieTag = "JOMBIE";
     private int hp;
     private int maxHp = 100;
     private NavMeshAgent agent;
@@ -43,6 +45,7 @@ public class ZombieDamage : MonoBehaviour
             StartCoroutine(EnemyJump()); // 점프 코루틴 시작
         }
     }
+  
     private void OnCollisionEnter(Collision col) // 콜백 함수 스스로 호출된다
     {
        if(col.gameObject.CompareTag(playertag))
@@ -70,7 +73,22 @@ public class ZombieDamage : MonoBehaviour
             Die();
         }
     }
+    private void OnEnable()
+    {
+        PlayerDamage.OnPlayerDie += this.OnPlayerDie; // 이벤트 등록
+        BarrelCtrl.OnEnemyDie += this.Die;
+    }
+    private void OnDisable()
+    {
+        PlayerDamage.OnPlayerDie -= this.OnPlayerDie;
+        BarrelCtrl.OnEnemyDie -= this.Die;
+    }
 
+    public void OnPlayerDie()
+    {
+        agent.Stop();
+        anim.SetTrigger(hashPlayerDie);
+    }
     private void Die()
     {
         isDie = true;
@@ -79,7 +97,17 @@ public class ZombieDamage : MonoBehaviour
         GetComponent<CapsuleCollider>().enabled = false;
         GetComponent<Rigidbody>().isKinematic = true;
         canvas.enabled = false; // 캔버스 UI비활성화
+
         GameManager.instance.UpdateKillCount(1); // 게임 매니저의 총 킬 카운트 증가
+
+        //GameObject[] enemies = GameObject.FindGameObjectsWithTag(zombieTag);
+        //// 하이라키에서 ENEMEY 태그를 갖고 있는 오브젝트들을 enemies 배열에 저장
+        //for (int i = 0; i < enemies.Length; i++)
+        //{
+        //    enemies[i].SendMessage("OnZombieDie", SendMessageOptions.DontRequireReceiver);
+        //    // 해당 오브젝트 함수 호출, 해당 함수가 없거나 오타가 있어도 오류를 발생시키지 않는 옵션
+        //}
+
     }
 
     private void OnCollisionExit(Collision col) // 콜백 함수 스스로 호출된다

@@ -1134,6 +1134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8115088354770931590, guid: ba52f2cca489d8e4290e9e723b571832, type: 3}
+      propertyPath: cameraShake
+      value: 
+      objectReference: {fileID: 539265417}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1670,6 +1674,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 8115088354770931590, guid: ba52f2cca489d8e4290e9e723b571832, type: 3}
+      propertyPath: cameraShake
+      value: 
+      objectReference: {fileID: 539265417}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2291,6 +2299,20 @@ MonoBehaviour:
   hpText: {fileID: 1007454100}
   bliendObj: {fileID: 0}
   isPlayerDie: 0
+--- !u!114 &539265417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154025992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96919d21d2572dd47b09c33fc486eb75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeTr: {fileID: 0}
+  shakeRotate: 0
 --- !u!1001 &589930906
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2343,6 +2365,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8115088354770931590, guid: ba52f2cca489d8e4290e9e723b571832, type: 3}
+      propertyPath: cameraShake
+      value: 
+      objectReference: {fileID: 539265417}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2405,6 +2431,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8115088354770931590, guid: ba52f2cca489d8e4290e9e723b571832, type: 3}
+      propertyPath: cameraShake
+      value: 
+      objectReference: {fileID: 539265417}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2929,6 +2959,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 8115088354770931590, guid: ba52f2cca489d8e4290e9e723b571832, type: 3}
+      propertyPath: cameraShake
+      value: 
+      objectReference: {fileID: 539265417}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3405,6 +3439,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 8115088354770931590, guid: ba52f2cca489d8e4290e9e723b571832, type: 3}
+      propertyPath: cameraShake
+      value: 
+      objectReference: {fileID: 539265417}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4969,6 +5007,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 8115088354770931590, guid: ba52f2cca489d8e4290e9e723b571832, type: 3}
+      propertyPath: cameraShake
+      value: 
+      objectReference: {fileID: 539265417}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5195,6 +5237,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 8115088354770931590, guid: ba52f2cca489d8e4290e9e723b571832, type: 3}
+      propertyPath: cameraShake
+      value: 
+      objectReference: {fileID: 539265417}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5525,6 +5571,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 8115088354770931590, guid: ba52f2cca489d8e4290e9e723b571832, type: 3}
+      propertyPath: cameraShake
+      value: 
+      objectReference: {fileID: 539265417}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5857,6 +5907,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 8115088354770931590, guid: ba52f2cca489d8e4290e9e723b571832, type: 3}
+      propertyPath: cameraShake
+      value: 
+      objectReference: {fileID: 539265417}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6211,6 +6265,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 8115088354770931590, guid: ba52f2cca489d8e4290e9e723b571832, type: 3}
+      propertyPath: cameraShake
+      value: 
+      objectReference: {fileID: 539265417}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7184,6 +7242,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 8115088354770931590, guid: ba52f2cca489d8e4290e9e723b571832, type: 3}
+      propertyPath: cameraShake
+      value: 
+      objectReference: {fileID: 539265417}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7775,6 +7837,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8115088354770931590, guid: ba52f2cca489d8e4290e9e723b571832, type: 3}
+      propertyPath: cameraShake
+      value: 
+      objectReference: {fileID: 539265417}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7895,6 +7961,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100002, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 539265413}
+    - targetCorrespondingSourceObject: {fileID: 100002, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 539265417}
   m_SourcePrefab: {fileID: 100100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
 --- !u!1001 &2000844391
 PrefabInstance:
@@ -7948,6 +8017,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel
       objectReference: {fileID: 0}
+    - target: {fileID: 8115088354770931590, guid: ba52f2cca489d8e4290e9e723b571832, type: 3}
+      propertyPath: cameraShake
+      value: 
+      objectReference: {fileID: 539265417}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8434,6 +8507,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 8115088354770931590, guid: ba52f2cca489d8e4290e9e723b571832, type: 3}
+      propertyPath: cameraShake
+      value: 
+      objectReference: {fileID: 539265417}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

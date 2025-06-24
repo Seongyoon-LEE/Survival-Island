@@ -6,6 +6,9 @@ using UnityEngine;
 public class BarrelCtrl : MonoBehaviour
 {
     [Header("Barrel Explosion 관련")]
+    [SerializeField] Shake cameraShake;
+    public delegate void EnemyDie();
+    public static event EnemyDie OnEnemyDie;
     [SerializeField] GameObject explosionEffect; // 폭파 이펙트 프리팹
     [SerializeField] AudioClip explosionClip; // 폭파 사운드 클립
     [SerializeField] AudioSource source; // 폭파 사운드 오디오 소스
@@ -27,6 +30,7 @@ public class BarrelCtrl : MonoBehaviour
         textures = Resources.LoadAll<Texture>("Textures1"); // Resources 폴더에서 베럴 텍스쳐 배열 로드
         meshRenderer.material.mainTexture = textures[Random.Range(0, textures.Length)]; // 랜덤으로 텍스쳐 설정
         meshFilter = GetComponent<MeshFilter>(); // 메쉬 필터 컴포넌트 가져오기
+ 
     }
 
     private void OnCollisionEnter(Collision col)
@@ -57,7 +61,10 @@ public class BarrelCtrl : MonoBehaviour
                 {
                     _rb.mass = 1.0f; // 리지드바디의 질량을 1로 변경
                     _rb.AddExplosionForce(800f, transform.position, radiuse, 300f); // 폭파 힘을 적용
+                    OnEnemyDie();
                 }                      // 폭파력,폭파 위치, 폭파 반경, 폭파 높이
+                cameraShake.shakeRotate = true; // 카메라 회전 쉐이크
+                StartCoroutine(cameraShake.ShakeCamera(0.03f, 0.15f, 0.0035f)); // 카메라 쉐이크
             }
         }
     }

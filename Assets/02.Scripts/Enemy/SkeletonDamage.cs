@@ -13,6 +13,7 @@ public class SkeletonDamage : MonoBehaviour
     private readonly int hashJump = Animator.StringToHash("IsJump_T");
     private readonly int hashHit = Animator.StringToHash("IsHit_T");
     private readonly int hashDie = Animator.StringToHash("IsDie_T");
+    private readonly int hashPlayerDie = Animator.StringToHash("PlayerDie");
     private bool isJumping = false;
     private Animator anim;
     private NavMeshAgent agent;
@@ -40,6 +41,16 @@ public class SkeletonDamage : MonoBehaviour
         {
             StartCoroutine(EnemyJump()); // 점프 코루틴 시작
         }
+    }
+    private void OnEnable()
+    {
+        PlayerDamage.OnPlayerDie += this.OnPlayerDie; // 이벤트 등록
+        BarrelCtrl.OnEnemyDie += this.Die;
+    }
+    private void OnDisable()
+    {
+        PlayerDamage.OnPlayerDie -= this.OnPlayerDie;
+        BarrelCtrl.OnEnemyDie -= this.Die;
     }
     private void OnCollisionEnter(Collision col) // 콜백 함수 스스로 호출된다
     {
@@ -84,8 +95,12 @@ public class SkeletonDamage : MonoBehaviour
             agent.speed = 0.1f;
         }
     }
-   
 
+    public void OnPlayerDie()
+    {
+        agent.Stop();
+        anim.SetTrigger(hashPlayerDie);
+    }
     void Die()
     {
         isDie = true;

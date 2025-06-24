@@ -25,7 +25,8 @@ public class ZombieCtrl : MonoBehaviour
 
     private readonly int hashAttack = Animator.StringToHash("IsAttack_B"); //동적할당과 동시 문자열을 읽어서 정수로 변환 
     private readonly int hashTrace = Animator.StringToHash("IsTrace_B");
-
+    private readonly int hashPlayerDie = Animator.StringToHash("PlayerDie");
+   
 
     void Start()
     {
@@ -60,6 +61,7 @@ public class ZombieCtrl : MonoBehaviour
         }
        
     }
+
 
     private void PlayerIdle()
     {

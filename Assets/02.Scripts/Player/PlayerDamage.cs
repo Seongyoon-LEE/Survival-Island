@@ -9,12 +9,17 @@ using UnityEngine.SceneManagement;
 //3.OnTriggerEnter
 public class PlayerDamage : MonoBehaviour
 {
+    [Header("HP 관련")]
     private float hp;
     private float maxHp = 100f; // 최대 채력
     public Image hpBar;
     public Text hpText;
     public GameObject bliendObj;
     public bool isPlayerDie = false;
+
+    public delegate void PlayerDieHandler(); // 델리게이트 선언
+    public static event PlayerDieHandler OnPlayerDie; // 이벤트 선언
+
     private string punchTag = "PUNCH";
 
     private void OnTriggerEnter(Collider other)
@@ -60,6 +65,7 @@ public class PlayerDamage : MonoBehaviour
 
     void PlayerDie()
     {
+        OnPlayerDie();
         bliendObj.SetActive(true);
         MonoBehaviour[] scripts = GetComponents<MonoBehaviour>(); 
         foreach(var script in scripts)
