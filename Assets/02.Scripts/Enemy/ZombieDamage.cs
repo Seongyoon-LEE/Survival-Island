@@ -98,7 +98,7 @@ public class ZombieDamage : MonoBehaviour
         GetComponent<Rigidbody>().isKinematic = true;
         canvas.enabled = false; // 캔버스 UI비활성화
 
-        GameManager.instance.UpdateKillCount(1); // 게임 매니저의 총 킬 카운트 증가
+        GameManager.Instance.UpdateKillCount(1); // 게임 매니저의 총 킬 카운트 증가
 
         //GameObject[] enemies = GameObject.FindGameObjectsWithTag(zombieTag);
         //// 하이라키에서 ENEMEY 태그를 갖고 있는 오브젝트들을 enemies 배열에 저장

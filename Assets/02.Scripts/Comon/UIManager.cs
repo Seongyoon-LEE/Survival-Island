@@ -10,8 +10,8 @@ public class UIManager : MonoBehaviour
     
     void Start()
     {
-        killTXT.text = $"Kill: <color=#f00>{GameManager.instance.totalkill.ToString()}</color>";
-        GameManager.instance.MouseCursorVisible();
+        killTXT.text = $"Kill: <color=#f00>{GameManager.Instance.totalkill.ToString()}</color>";
+        GameManager.Instance.MouseCursorVisible();
     }
 
     

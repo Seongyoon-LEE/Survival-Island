@@ -7,12 +7,19 @@ using UnityEngine.UI;
 //적 태어나기 1. 태어날 위치 2. 태어날 시간 3. 태어날 적 종류를 설정합니다.
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance; // 싱글톤 기법
+    public static GameManager Instance; // 싱글톤 기법
     //1. 무분별한 객체 생성 방지
     //2. 전역에서 쉽게 접근 가능 
     public GameObject zombiePrefab; // 좀비 프리팹  
     public GameObject skeletonPrefab; // 스켈레톤 프리팹
     public List<Transform> spawnList;
+
+    [Header("Inventory 관련")]
+    public GameObject inventory;
+    private bool isInventoryOpen = false; // 상태 저장
+
+    [Header("Pause 관련")]
+    private bool isPaused = false;
 
     public Text killText; // UI에 표시할 킬수
     private float timePrev;
@@ -22,14 +29,16 @@ public class GameManager : MonoBehaviour
     public int totalkill = 0; // 총 킬 카운트
     PlayerDamage playerDamage;
 
+    [Header("Tag 관련")]
+    readonly string playerTag = "Player";
     private readonly string zombieTag = "ZOMBIE";
     private readonly string skeletonTag = "SKELETON";
 
     private void Awake() // Start() 전에 호출되는 함수로, 싱글톤 패턴을 구현합니다.
     {
-        if(instance == null) // 싱글톤 인스턴스가 없으면 
+        if(Instance == null) // 싱글톤 인스턴스가 없으면 
         {
-            instance = this; // 현재 인스턴스를 설정
+            Instance = this; // 현재 인스턴스를 설정
             DontDestroyOnLoad(gameObject); // 씬 전환 시에도 파괴되지 않도록 설정
         }
         else
@@ -42,7 +51,7 @@ public class GameManager : MonoBehaviour
         MouseCursorVisible();
         playerDamage = GameObject.FindWithTag("Player").GetComponent<PlayerDamage>();
         if (playerDamage.isPlayerDie) return;
-        if(instance != null)
+        if(Instance != null)
         killText = GameObject.Find("Panel-Kill").transform.GetChild(0).GetComponent<Text>(); // UI에서 킬수 텍스트를 찾음
         else
             killText = null;
@@ -77,6 +86,42 @@ public class GameManager : MonoBehaviour
             if(skeletonCount < maxSkeletonCount) // 최대 스켈레톤 수를 초과하면 생성하지 않음
                 CreateSkeleton();
         }
+        // 인벤토리 토글 키 감지
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            ToggleInventory();
+        }
+    }
+    public void ToggleInventory() // 토글 인벤토리 
+    {
+        isInventoryOpen = !isInventoryOpen;
+
+        var canvasGroup = inventory.GetComponent<CanvasGroup>();
+        canvasGroup.blocksRaycasts = isInventoryOpen;
+        canvasGroup.alpha = isInventoryOpen ? 1.0f : 0.0f;
+        canvasGroup.interactable = isInventoryOpen;
+
+        PlayStop(isInventoryOpen);
+        MouseCursorVisible();
+    }
+    private void PlayStop(bool pause) // 게임 일시 정지
+    {
+        isPaused = pause;
+        Time.timeScale = isPaused ? 0f : 1f;
+
+        GameObject playerObj = GameObject.FindGameObjectWithTag(playerTag);
+        if (playerObj != null)
+        {
+            MonoBehaviour[] scripts = playerObj.GetComponents<MonoBehaviour>();
+            foreach (MonoBehaviour script in scripts)
+                script.enabled = !isPaused;
+        }
+
+        //if (panel_Weapon != null)
+        //{
+        //    var canvasGroup = panel_Weapon.GetComponent<CanvasGroup>();
+        //    canvasGroup.blocksRaycasts = !isPaused;
+        //}
     }
     void CreateZombie()
     {
@@ -90,6 +135,10 @@ public class GameManager : MonoBehaviour
      
         int idx = Random.Range(0, spawnList.Count); // 랜덤한 인덱스 생성
         Instantiate(skeletonPrefab, spawnList[idx].position, spawnList[idx].rotation);
+    }
+    public void OnPauseClick()
+    {
+        ToggleInventory(); // ESC 누르면 인벤 꺼질 수 있도록 재활용 가능
     }
     public void UpdateKillCount(int killCount)
     {
